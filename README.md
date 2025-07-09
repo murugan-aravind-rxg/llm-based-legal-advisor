@@ -1,74 +1,62 @@
-# llm-based-legal-advisor
+# LLM Legal Advisor V1
 
-A powerful, AI-driven legal advisor that leverages large language models (LLMs) to provide instant, accurate, and accessible legal information and guidance. This project aims to democratize legal knowledge, making it available to everyone, anytime.
+A parallelized, AI-powered legal document analyzer that leverages large language models (LLMs) to provide instant, structured legal insights. This tool summarizes legal documents, identifies risks, and classifies clauses—all in one go.
 
 ## Features
 
-- **Natural Language Legal Q&A:** Ask legal questions in plain English and get clear, concise answers.
-- **Document Analysis:** Upload legal documents (contracts, agreements, etc.) for AI-powered review and summarization.
-- **Legal Research:** Get references to relevant laws, statutes, and case precedents.
-- **Privacy First:** All data is processed securely, with a focus on user privacy.
+- **Parallel Analysis:** Summarizes, evaluates risks, and tags legal clauses concurrently for fast results.
+- **Natural Language Processing:** Uses state-of-the-art LLMs for clear, concise, and accurate legal analysis.
+- **Customizable:** Easily adapt the input document or extend the analysis agents.
 
-## Getting Started
-
-### Prerequisites
+## Requirements
 
 - Python 3.8+
-- (Optional) API keys for LLM providers (e.g., OpenAI, Gemini, etc.)
+- API keys for LLM providers (e.g., OpenAI, Groq)
+- Internet connection
 
-### Installation
+## Installation
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/murugan-aravind-rxg/llm-based-legal-advisor
-   cd llm-based-legal-advisor
+   git clone https://github.com/murugan-aravind-rxg/llm-legal-advisor.git
+   cd llm-legal-advisor
    ```
 
 2. **Install dependencies:**
    ```bash
-   pip install -r requirements.txt
+   pip install openai python-dotenv ipython
    ```
 
-3. **Set up environment variables:**
-   - Create a `.env` file and add your API keys and configuration.
+3. **Set up API keys:**
+   - Create a `.env` file in the project directory with the following content:
+     ```
+     OPENAI_API_KEY=your_openai_key_here
+     GROQ_API_KEY=your_groq_key_here
+     ```
 
-### Usage
+## Usage
 
-- **Run the application:**
-  ```bash
-  python app.py
-  ```
-- **Interact via CLI or Web UI:** (Describe how users can interact, e.g., through a web interface or command line.)
+1. **Run the script:**
+   ```bash
+   python llm_legal_advisorV1.py
+   ```
 
-### Example
+2. **What happens:**
+   - The script analyzes a sample legal document (you can edit the `dummy_document` variable).
+   - It prints a structured report with:
+     - Section 1: Summary
+     - Section 2: Risk Analysis
+     - Section 3: Clause Classification & Compliance Tags
 
-```text
-User: Can my landlord increase rent without notice?
-AI: In most jurisdictions, landlords are required to provide written notice before increasing rent. The notice period and rules may vary by location. Please specify your state or country for more accurate information.
-```
+3. **Customizing:**
+   - Replace the contents of `dummy_document` in the script with your own legal text to analyze other documents.
 
-## Project Structure
+## How It Works
 
-```
-llm-legal-advisor/
-├── app.py
-├── requirements.txt
-├── README.md
-├── modules/
-│   ├── legal_qa.py
-│   ├── document_analysis.py
-│   └── ...
-└── ...
-```
+- The script defines three agent functions:
+  - `llm_summarizer`: Summarizes the document.
+  - `llm_evaluate_risks`: Identifies and explains legal risks.
+  - `llm_tag_clauses`: Tags and classifies legal clauses.
+- The `coordinator` function runs these agents in parallel and aggregates their results into a structured report.
 
-## Contributing
-
-Contributions are welcome! Please open issues or submit pull requests for new features, bug fixes, or improvements.
-
-## Disclaimer
-
-**This tool is for informational purposes only and does not constitute legal advice. For specific legal concerns, please consult a qualified attorney.**
-
-## License
-
-[MIT License](LICENSE)
+## Example Output
